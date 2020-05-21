@@ -14,6 +14,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/tweets', 'TweetsController@store');
 
     Route::post('/tweets/{tweet}/like', 'TweetLikesController@store');
+
     Route::delete('/tweets/{tweet}/like', 'TweetLikesController@destroy');
 
     Route::post('/profiles/{user:username}/follow','FollowsController@store')->name('follow');

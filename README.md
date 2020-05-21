@@ -4,7 +4,15 @@
 
 Trying to implement social Networking site things using Laravel 
 
-Please Issue reports if find .
+Please correct the issues 
+
+```git clone 
+```
+```composer install  
+```
+```create .env 
+```
+
 
 # Thank You
 
