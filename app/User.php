@@ -2,31 +2,26 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Followable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast to native types.
@@ -37,19 +32,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatarAttribute()
+    public function getAvatarAttribute($value)
     {
-        return "https://i.pravatar.cc/40?u=" . $this->email;
+        return asset($value ?: '/images/default-avatar.jpeg');
     }
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
     public function timeline()
     {
-
         $friends = $this->follows()->pluck('id');
 
-        return Tweet::whereIn('user_id', $friends) ->orWhere('user_id', $this->id)->withLikes() ->orderByDesc('id')->paginate(10);
-
+        return Tweet::whereIn('user_id', $friends)
+            ->orWhere('user_id', $this->id)
+            ->withLikes()
+            ->orderByDesc('id')
+            ->paginate(10);
     }
 
     public function tweets()
@@ -57,20 +58,15 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class)->latest();
     }
 
-    public function follow(User $user)
+    public function likes()
     {
-        return $this->follows()->save($user);
+        return $this->hasMany(Like::class);
     }
 
-    public function follows()
+    public function path($append = '')
     {
-        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
-    }
+        $path = route('profile', $this->username);
 
-    /*<---------- ProfileContoller ---------> */
-    public function getRouteKeyName()
-    {
-        return 'name';
+        return $append ? "{$path}/{$append}" : $path;
     }
-
 }

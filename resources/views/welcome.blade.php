@@ -71,16 +71,12 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/tweets') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
-
                     @endauth
-
                 </div>
             </div>
         </div>
