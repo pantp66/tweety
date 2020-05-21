@@ -12,4 +12,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('home', [
+            'tweets' => auth()->user()->timeline()
+        ]);
+    }
+
 }
