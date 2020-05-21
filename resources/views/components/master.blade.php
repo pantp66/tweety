@@ -21,45 +21,22 @@
 </head>
 <body>
     <div id="app">
-       <section class="px-8 py-4 mb-6">
+        <section class="px-8 py-4 mb-6">
             <header class="container mx-auto">
                 <h1>
-                 <img src="/images/logo.svg'" alt="logo">
+                    <a href="/tweets">
+                        <img
+                            src="/images/logo.svg"
+                            alt="Tweety"
+                        >
+                    </a>
                 </h1>
             </header>
         </section>
 
-     <section class="px-8">
-        <main class="container mx-auto">
-            <div class="flex justify-between">
-
-                <div class="w-auto" >
-                    @include('_sidebar-links')
-                </div>
-
-                <div class="flex-1 mx-10 style='max-width:700px'">
-
-                    @yield('content')
-
-                <div class="border border-gray-300 rounded-lg">
-
-                  @foreach ($tweets as $tweet)
-
-                     @include('_tweet')
-
-                  @endforeach
-
-                </div>
-            </div>
-
-                <div class="bg-blue-100 rounded-lg p-4">
-                    @include('_friends-list')
-                </div>
-
-            </div>
-        </main>
-     </section>
-
+        {{ $slot }}
     </div>
+
+    <script src="http://unpkg.com/turbolinks"></script>
 </body>
 </html>
