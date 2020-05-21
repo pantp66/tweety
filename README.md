@@ -6,13 +6,17 @@ Trying to implement social Networking site things using Laravel
 
 Please correct the issues 
 
+## install guide    
+
 
 ```bash
-git clone 
+git clone
 ```
+
 ```bash
-composer install  
+composer install
 ```
+
 ```bash
 create .env 
 ```
