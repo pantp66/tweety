@@ -1,14 +1,25 @@
-<h1 class="font-bold text-xl mb-4">Friends</h1>
+<div class="bg-gray-200 border border-gray-300 rounded-lg py-4 px-6">
+    <h3 class="font-bold text-xl mb-4">Following</h3>
 
-<ul>
-    @foreach (range(1,6) as $index)
+    <ul>
+        @forelse (current_user()->follows as $user)
+            <li class="{{ $loop->last ? '' : 'mb-4' }}">
+                <div>
+                    <a href="{{ $user->path() }}" class="flex items-center text-sm">
+                        <img
+                            src="{{ $user->avatar }}"
+                            alt=""
+                            class="rounded-full mr-2"
+                            width="40"
+                            height="40"
+                        >
 
-
-    <li>
-        <div class="flex item-center mt-2 mb-4 text-sm">
-            <img src="https://i.pravatar.cc/40" class= "rounded-full mr-2" alt="">
-            user
-        </div>
-    </li>
-    @endforeach
-</ul>
+                        {{ $user->name }}
+                    </a>
+                </div>
+            </li>
+        @empty
+            <li>No friends yet!</li>
+        @endforelse
+    </ul>
+</div>
