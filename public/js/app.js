@@ -49850,9 +49850,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/cole.akash/projects/SNClone/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/cole.akash/projects/SNClone/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/cole.akash/projects/SNClone/resources/css/main.css */"./resources/css/main.css");
+__webpack_require__(/*! /Applications/MAMP/htdocs/tweety/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/tweety/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/tweety/resources/css/main.css */"./resources/css/main.css");
 
 
 /***/ })
